@@ -13,6 +13,7 @@ class TradeDetailsAdmin(admin.ModelAdmin):
         'is_active', 
         'created_at', 
         'idea_candle_image', 
+        'idea_candle_two_image', 
         'daily_candle_image', 
         'four_hour_candle',
         'line_graph_candle_image', 
@@ -42,6 +43,7 @@ class TradeDetailsAdmin(admin.ModelAdmin):
         ('Hour and Custom Candles', {
             'fields': (
                 'idea_candle',
+                'idea_candle_two',
                 'daily_candle',
                 'youtube_candle',
                 'four_hour_candle',
@@ -65,6 +67,12 @@ class TradeDetailsAdmin(admin.ModelAdmin):
             return format_html('<img src="{}" width="50" height="50" />', obj.idea_candle.url)
         return None
     idea_candle_image.short_description = 'Idea Candle'
+    
+    def idea_candle_two_image(self, obj):
+        if obj.idea_candle_two:
+            return format_html('<img src="{}" width="50" height="50" />', obj.idea_candle_two.url)
+        return None
+    idea_candle_two_image.short_description = 'Idea Candle Two'
 
     def youtube_candle_image(self, obj):
         if obj.youtube_candle:
