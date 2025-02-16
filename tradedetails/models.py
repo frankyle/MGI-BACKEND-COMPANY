@@ -13,6 +13,7 @@ class TradeDetails(models.Model):
 
     # Hour and custom candles
     idea_candle = models.ImageField(upload_to='idea_candles/', null=True, blank=True)
+    idea_candle_two = models.ImageField(upload_to='idea_candle_two/', null=True, blank=True)
     youtube_candle = models.ImageField(upload_to='youtube/', null=True, blank=True)
     daily_candle = models.ImageField(upload_to='daily_candles/', null=True, blank=True)
     four_hour_candle = models.ImageField(upload_to='four_hour_candles/', null=True, blank=True)
