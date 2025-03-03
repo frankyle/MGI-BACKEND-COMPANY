@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 import os
+from django.utils import timezone
 
 # Function for trade image upload path
 def risktrade_image_path(instance, filename):
@@ -21,6 +22,19 @@ class RiskTrade(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='risktrades')  # Trader/user
     created_at = models.DateTimeField(auto_now_add=True)  # Timestamp for creation
     updated_at = models.DateTimeField(auto_now=True)  # Timestamp for updates
+    
+    # New fields for date and day name
+    date = models.CharField(max_length=20, blank=True, null=True)  # Store the formatted date
+    day_name = models.CharField(max_length=20, blank=True, null=True)  # Store the name of the day
+
+    def save(self, *args, **kwargs):
+        # Automatically populate date and day_name before saving
+        if not self.date or not self.day_name:
+            # Use created_at timestamp to set date and day_name
+            created_date = self.created_at
+            self.date = created_date.strftime("%dth %b %Y")  # Format: 13th Feb 2025
+            self.day_name = created_date.strftime("%A")  # Format: Tuesday
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.currency_pair} - Risk: {self.risk_pips} pips, Gain: {self.gain_pips} pips"

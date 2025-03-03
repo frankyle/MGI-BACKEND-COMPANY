@@ -27,19 +27,19 @@ class RiskTradeAdmin(admin.ModelAdmin):
     mt5_positions_preview.short_description = "MT5 Positions"
 
     list_display = ('currency_pair', 'user', 'risk_pips', 'risk_dollars', 'risk_tsh', 
-                    'gain_pips', 'gain_dollars', 'gain_tsh', 'created_at', 'updated_at', 
-                    'mt5_chart_preview', 'tradeview_chart_preview', 'mt5_positions_preview')
+                    'gain_pips', 'gain_dollars', 'gain_tsh', 'date', 'day_name', 
+                    'created_at', 'updated_at', 'mt5_chart_preview', 'tradeview_chart_preview', 'mt5_positions_preview')
     
-    list_filter = ('currency_pair', 'user', 'created_at')
-    search_fields = ('currency_pair', 'user__username')
+    list_filter = ('currency_pair', 'user', 'created_at', 'date', 'day_name')
+    search_fields = ('currency_pair', 'user__username', 'date', 'day_name')
     ordering = ('-created_at',)
     readonly_fields = ('created_at', 'updated_at', 'mt5_chart_preview', 
-                       'tradeview_chart_preview', 'mt5_positions_preview')
+                       'tradeview_chart_preview', 'mt5_positions_preview', 'date', 'day_name')
 
     fieldsets = (
         ('Trade Details', {
             'fields': ('currency_pair', 'risk_pips', 'risk_dollars', 'risk_tsh', 
-                       'gain_pips', 'gain_dollars', 'gain_tsh')
+                       'gain_pips', 'gain_dollars', 'gain_tsh', 'date', 'day_name')
         }),
         ('Charts & Images', {
             'fields': ('mt5_chart', 'mt5_chart_preview', 
@@ -52,8 +52,8 @@ class RiskTradeAdmin(admin.ModelAdmin):
     )
 
     def get_readonly_fields(self, request, obj=None):
-        """Ensure image previews remain read-only when editing."""
+        """Ensure image previews and date-related fields remain read-only when editing."""
         readonly_fields = super().get_readonly_fields(request, obj)
         if obj:  # Editing an existing object
-            return readonly_fields + ('mt5_chart_preview', 'tradeview_chart_preview', 'mt5_positions_preview')
+            return readonly_fields + ('mt5_chart_preview', 'tradeview_chart_preview', 'mt5_positions_preview', 'date', 'day_name')
         return readonly_fields
