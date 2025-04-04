@@ -4,7 +4,7 @@ from .models import TradingIndicators
 @admin.register(TradingIndicators)
 class TradingIndicatorsAdmin(admin.ModelAdmin):
     list_display = (
-        'trade_detail', 
+        'trade_reason', 
         'candle_pattern', 
         'fibonacci_level', 
         'session', 
@@ -22,4 +22,4 @@ class TradingIndicatorsAdmin(admin.ModelAdmin):
         'pips_gained'
     )
     list_filter = ('candle_pattern', 'fibonacci_level', 'session', 'five_min_order_block', 'london_kill_zone')
-    search_fields = ('trade_detail__currency_pair', 'candle_pattern', 'session')
+    search_fields = ('trade_reason__currency_pair', 'candle_pattern', 'session')

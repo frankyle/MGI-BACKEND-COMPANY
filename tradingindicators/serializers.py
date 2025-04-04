@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import TradingIndicators
 
 class TradingIndicatorsSerializer(serializers.ModelSerializer):
-    currency_pair = serializers.CharField(source='trade_detail.currency_pair', read_only=True)
+    currency_pair = serializers.CharField(source='trade_reason.currency_pair', read_only=True)
 
     class Meta:
         model = TradingIndicators

@@ -1,8 +1,8 @@
 from django.db import models
-from tradedetails.models import TradeDetails
+from tradereasons.models import TradeReasons
 
 class CandleImages(models.Model):
-    trade_detail = models.ForeignKey(TradeDetails, on_delete=models.CASCADE, related_name="candle_images")
+    trade_reason = models.ForeignKey(TradeReasons, on_delete=models.CASCADE, related_name="candle_images")
 
     # Day-specific candles
     monday_candle = models.ImageField(upload_to='monday_candles/', null=True, blank=True)
