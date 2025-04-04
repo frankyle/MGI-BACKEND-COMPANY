@@ -6,7 +6,7 @@ from .models import CandleImages
 class CandleImagesAdmin(admin.ModelAdmin):
     # Display these fields in the list view
     list_display = (
-        'trade_detail',
+        'trade_reason',
         'monday_candle_image',
         'tuesday_candle_image',
         'wednesday_candle_image',
@@ -18,15 +18,15 @@ class CandleImagesAdmin(admin.ModelAdmin):
     )
     
     # Filters to search for specific days or candle types
-    list_filter = ('trade_detail',)
+    list_filter = ('trade_reason',)
     
     # Allow searching by related `TradeDetails` fields
-    search_fields = ('trade_detail__currency_pair', 'trade_detail__user__username')
+    search_fields = ('trade_reason__currency_pair', 'trade_reason__user__username')
     
     # Group fields in sections
     fieldsets = (
         (None, {
-            'fields': ('trade_detail',)
+            'fields': ('trade_reason',)
         }),
         ('Day-Specific Candles', {
             'fields': (

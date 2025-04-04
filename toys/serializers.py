@@ -12,3 +12,4 @@ class ToySerializer(serializers.ModelSerializer):
         if request and hasattr(request, 'user'):
             validated_data['user'] = request.user  # Automatically assigns the logged-in user
         return super().create(validated_data)
+ 

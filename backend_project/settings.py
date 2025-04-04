@@ -33,6 +33,7 @@ INSTALLED_APPS = [
 
     'accounts',         
     'tradedetails',     
+    'tradereasons',     
     'candleimages',     
     'tradingindicators',  
     'puzzles',  

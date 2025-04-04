@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('accounts.urls')),  
     path('api/tradedetails/', include('tradedetails.urls')),  
+    path('api/tradereasons/', include('tradereasons.urls')),  
     path('api/candleimages/', include('candleimages.urls')),  
     path('api/tradingindicators/', include('tradingindicators.urls')),  
     path('api/task/', include('task.urls')),  

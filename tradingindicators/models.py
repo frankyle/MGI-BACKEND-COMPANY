@@ -1,14 +1,14 @@
 from django.db import models
-from tradedetails.models import TradeDetails
+from tradereasons.models import TradeReasons
 
 class TradingIndicators(models.Model):
-    trade_detail = models.ForeignKey(TradeDetails, on_delete=models.CASCADE, related_name="trading_indicators")
+    trade_reason = models.ForeignKey(TradeReasons, on_delete=models.CASCADE, related_name="trading_indicators")
 
     # Pattern and level fields
     candle_pattern = models.CharField(
         max_length=20,
         choices=(
-            ("Engulfing", "Engulfing Candle"), 
+            ("Engulfing", "Engulfing Candle"),  
             ("Small Body", "Small Candle"),
             ("Pinbar", "Pin bar Candle"),
         ),
